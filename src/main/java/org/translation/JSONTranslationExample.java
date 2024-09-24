@@ -52,19 +52,22 @@ public class JSONTranslationExample {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject country = jsonArray.getJSONObject(i);
-            if (country.getString("code").equalsIgnoreCase(countryCode)) {
+
+            // Check if the "alpha3" field exists and matches the countryCode (case-insensitive)
+            if (country.has("alpha3") && country.getString("alpha3").equalsIgnoreCase(countryCode)) {
+                // Check if the translation exists for the given language code
                 if (country.has(languageCode)) {
                     result = country.getString(languageCode);
                 }
                 else {
                     result = "Language not found";
                 }
-                // Break once the country is found
+                // Exit loop once the country is found
                 break;
             }
         }
 
-        // Return once at the end
+        // Return the result at the end
         return result;
     }
 
@@ -76,7 +79,7 @@ public class JSONTranslationExample {
         JSONTranslationExample jsonTranslationExample = new JSONTranslationExample();
 
         System.out.println(jsonTranslationExample.getCanadaCountryNameSpanishTranslation());
-        String translation = jsonTranslationExample.getCountryNameTranslation("can", "es");
+        String translation = jsonTranslationExample.getCountryNameTranslation("CAN", "es");
         System.out.println(translation);
     }
 }
