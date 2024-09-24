@@ -47,6 +47,7 @@ public class JSONTranslationExample {
     public String getCubaCountryNameDanishTranslation() {
         return getCountryNameTranslation("CUB", "da");
     }
+
     /**
      * Returns the name of the country based on the provided country and language codes.
      * @param countryCode the country, as its three-letter code.
