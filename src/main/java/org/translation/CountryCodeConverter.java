@@ -37,7 +37,6 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
 
             this.jArray = new ArrayList<>(lines);
-
         }
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
