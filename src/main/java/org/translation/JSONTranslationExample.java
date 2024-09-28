@@ -20,7 +20,7 @@ public class JSONTranslationExample {
     public JSONTranslationExample() {
         try {
             // this next line of code reads in a file from the resources folder as a String,
-            // which we then create a new JSONArray object from.
+            // which we then create a new JSONArray object from3.
             String jsonString = Files.readString(
                     Paths.get(getClass().getClassLoader().getResource("sample.json").toURI())
             );
@@ -79,7 +79,7 @@ public class JSONTranslationExample {
         JSONTranslationExample jsonTranslationExample = new JSONTranslationExample();
 
         System.out.println(jsonTranslationExample.getCanadaCountryNameSpanishTranslation());
-        String translation = jsonTranslationExample.getCountryNameTranslation("CAN", "es");
+        String translation = jsonTranslationExample.getCountryNameTranslation("can", "zh");
         System.out.println(translation);
     }
 }
