@@ -13,7 +13,7 @@ import org.json.JSONArray;
  * An implementation of the Translator interface which reads in the translation
  * data from a JSON file. The data is read in once each time an instance of this class is constructed.
  */
-public class JSONTranslator implements Translator {
+public class JSONTranslator implements org.translation.Translator {
 
     // TODO Task: pick appropriate instance variables for this class
 

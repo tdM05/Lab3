@@ -20,12 +20,11 @@ public class Main {
      * @param args not used by the program
      */
     public static void main(String[] args) {
-
         // TODO Task: once you finish the JSONTranslator,
         //            you can use it here instead of the InLabByHandTranslator
         //            to try out the whole program!
         // Translator translator = new JSONTranslator(null);
-        Translator translator = new InLabByHandTranslator();
+        org.translation.Translator translator = new org.translation.InLabByHandTranslator();
 
         runProgram(translator);
     }
@@ -36,19 +35,20 @@ public class Main {
      * See the class Javadoc for a summary of what the program will do.
      * @param translator the Translator implementation to use in the program
      */
-    public static void runProgram(Translator translator) {
+    public static void runProgram(org.translation.Translator translator) {
         while (true) {
             String country = promptForCountry(translator);
-            // TODO CheckStyle: The String "quit" appears 3 times in the file.
-            // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
-            if (country.equals("quit")) {
+            String quit = "quit";
+            // CheckStyle DONE: The String "quit" appears 3 times in the file.
+            // Checkstyle DONE: String literal expressions should be on the left side of an equals comparison
+            if (quit.equals(country)) {
                 break;
             }
             // TODO Task: Once you switch promptForCountry so that it returns the country
             //            name rather than the 3-letter country code, you will need to
             //            convert it back to its 3-letter country code when calling promptForLanguage
             String language = promptForLanguage(translator, country);
-            if (language.equals("quit")) {
+            if (quit.equals(language)) {
                 break;
             }
             // TODO Task: Once you switch promptForLanguage so that it returns the language
@@ -61,14 +61,14 @@ public class Main {
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
 
-            if ("quit".equals(textTyped)) {
+            if (quit.equals(textTyped)) {
                 break;
             }
         }
     }
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
-    private static String promptForCountry(Translator translator) {
+    private static String promptForCountry(org.translation.Translator translator) {
         List<String> countries = translator.getCountries();
         // TODO Task: replace the following println call, sort the countries alphabetically,
         //            and print them out; one per line
@@ -84,9 +84,9 @@ public class Main {
     }
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
-    private static String promptForLanguage(Translator translator, String country) {
-
-        // TODO Task: replace the line below so that we sort the languages alphabetically and print them out; one per line
+    private static String promptForLanguage(org.translation.Translator translator, String country) {
+        // TODO Task: replace the line below so that we sort the
+        //  languages alphabetically and print them out; one per line
         // TODO Task: convert the language codes to the actual language names before sorting
         System.out.println(translator.getCountryLanguages(country));
 

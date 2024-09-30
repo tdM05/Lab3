@@ -21,9 +21,9 @@ public class JSONTranslationExample {
         try {
             // this next line of code reads in a file from the resources folder as a String,
             // which we then create a new JSONArray object from.
-            // TODO CheckStyle: Line is longer than 120 characters
-            //                  (note: you can split a line such that the next line starts with a .method()... call
-            String jsonString = Files.readString(Paths.get(getClass().getClassLoader().getResource("sample.json").toURI()));
+            String jsonString = Files.readString(
+                    Paths.get(getClass().getClassLoader().getResource("sample.json").toURI())
+            );
             this.jsonArray = new JSONArray(jsonString);
         }
         catch (IOException | URISyntaxException ex) {
@@ -36,14 +36,17 @@ public class JSONTranslationExample {
      * @return the Spanish translation of Canada
      */
     public String getCanadaCountryNameSpanishTranslation() {
-
-        // TODO Checkstyle: '30' is a magic number.
-        JSONObject canada = jsonArray.getJSONObject(30);
-        return canada.getString("es");
+        // Instead of using an index (magic number), find Canada by its country code
+        return getCountryNameTranslation("CAN", "es");
     }
 
-    // TODO Task: Complete the method below to generalize the above to get the country name
-    //            for any country code and language code from sample.json.
+    /**
+     * Returns the Danish translation of Cuba.
+     * @return the Danish translation of Canada
+     */
+    public String getCubaCountryNameDanishTranslation() {
+        return getCountryNameTranslation("CUB", "da");
+    }
 
     /**
      * Returns the name of the country based on the provided country and language codes.
@@ -52,7 +55,28 @@ public class JSONTranslationExample {
      * @return the translation of country to the given language or "Country not found" if there is no translation.
      */
     public String getCountryNameTranslation(String countryCode, String languageCode) {
-        return "Country not found";
+        // Default message
+        String result = "Country not found";
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject country = jsonArray.getJSONObject(i);
+
+            // Check if the "alpha3" field exists and matches the countryCode (case-insensitive)
+            if (country.has("alpha3") && country.getString("alpha3").equalsIgnoreCase(countryCode)) {
+                // Check if the translation exists for the given language code
+                if (country.has(languageCode)) {
+                    result = country.getString(languageCode);
+                }
+                else {
+                    result = "Language not found";
+                }
+                // Exit loop once the country is found
+                break;
+            }
+        }
+
+        // Return the result at the end
+        return result;
     }
 
     /**
@@ -63,7 +87,7 @@ public class JSONTranslationExample {
         JSONTranslationExample jsonTranslationExample = new JSONTranslationExample();
 
         System.out.println(jsonTranslationExample.getCanadaCountryNameSpanishTranslation());
-        String translation = jsonTranslationExample.getCountryNameTranslation("can", "es");
+        String translation = jsonTranslationExample.getCountryNameTranslation("CAN", "es");
         System.out.println(translation);
     }
 }
