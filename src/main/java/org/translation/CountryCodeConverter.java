@@ -41,7 +41,7 @@ public class CountryCodeConverter {
                 String[] parts = line.split("\t");
                 if (parts.length >= 4){
                     String country = parts[0];
-                    String alpha3Code = parts[2];
+                    String alpha3Code = parts[2].toUpperCase();
                     mapCodeToCountry.put(alpha3Code, country);
                     mapCountryToCode.put(country, alpha3Code);
                 }
@@ -60,7 +60,7 @@ public class CountryCodeConverter {
      */
     public String fromCountryCode(String code) {
         // DONE Task: update this code to use an instance variable to return the correct value
-        return mapCodeToCountry.getOrDefault(code, "Unknown code");
+        return mapCodeToCountry.getOrDefault(code.toUpperCase(), "Unknown code");
     }
 
     /**
