@@ -37,7 +37,7 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
 
             // DONE Task: use lines to populate the instance variable(s)
-            for (String line: lines){
+            for (String line : lines) {
                 String[] parts = line.split("\t");
                 if (parts.length >= 4){
                     String country = parts[0];
